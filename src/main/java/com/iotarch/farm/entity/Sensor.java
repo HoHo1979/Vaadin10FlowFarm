@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 
-public class Sensor implements Serializable, Cloneable {
+public class Sensor implements Serializable, Cloneable{
 
     String sensorId=null;
 
@@ -83,4 +83,6 @@ public class Sensor implements Serializable, Cloneable {
     public void setTimeStamp(long timeStamp) {
         this.timeStamp = timeStamp;
     }
+
+
 }

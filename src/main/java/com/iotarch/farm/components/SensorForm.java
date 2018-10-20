@@ -13,15 +13,17 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.spring.annotation.UIScope;
 import com.vaadin.flow.spring.annotation.VaadinSessionScope;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.time.Instant;
 import java.util.Random;
 
 @Component
-@VaadinSessionScope
+@UIScope
 public class SensorForm extends FormLayout {
 
 
@@ -79,7 +81,7 @@ public class SensorForm extends FormLayout {
     }
 
     private void save(ClickEvent<Button> buttonClickEvent) {
-        
+
         service.save(sensor);
         broadCaster.broadcast(StringHelper.UPDATELIST);
         setSensor(null);

@@ -20,7 +20,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @ApplicationScope
 public class SensorRepositoryImp implements SesnsorRepository {
 
-//    List<Sensor> sensors = Collections.synchronizedList(new ArrayList<>());
     List<Sensor> sensors = new CopyOnWriteArrayList<Sensor>();
 
     public SensorRepositoryImp() {
@@ -33,7 +32,6 @@ public class SensorRepositoryImp implements SesnsorRepository {
 
             Instant instant = Instant.now();
             Sensor sensor = new Sensor("A"+id,"A"+id, SensorStatus.On,instant.toEpochMilli());
-//            sensor.setLocalDateTime(LocalDateTime.ofInstant(instant,ZoneOffset.UTC));
             sensors.add(sensor);
         }
 

@@ -71,7 +71,6 @@ public class MainView extends VerticalLayout implements BeforeEnterObserver{
                 FormatStyle.MEDIUM))).setHeader("Time");
 
 
-//        grid.addColumn(Customer::getStatus).setHeader("Status");
 
         grid.asSingleSelect().addValueChangeListener(c->sensorForm.setSensor(c.getValue()));
 
@@ -80,7 +79,6 @@ public class MainView extends VerticalLayout implements BeforeEnterObserver{
         Button addSensorBtn = new Button("Add new Sensor");
         addSensorBtn.addClickListener(e -> {
             grid.asSingleSelect().clear();
-            //form.setCustomer(new Customer());
             sensorForm.setSensor(new Sensor());
         });
 
@@ -112,7 +110,6 @@ public class MainView extends VerticalLayout implements BeforeEnterObserver{
 
         grid.setItems(sensorService.findAllSensors(filterText.getValue()));
 
-       // grid.setItems(service.findAll(filterText.getValue()));
 
     }
 
@@ -129,7 +126,7 @@ public class MainView extends VerticalLayout implements BeforeEnterObserver{
 
     @Override
     protected void onAttach(AttachEvent attachEvent) {
-//        super.onAttach(attachEvent);
+
         UI ui = attachEvent.getUI();
         registration = broadCaster.register(message->{
 
