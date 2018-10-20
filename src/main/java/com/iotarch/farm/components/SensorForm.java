@@ -9,6 +9,7 @@ import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
@@ -23,6 +24,8 @@ import java.util.Random;
 @VaadinSessionScope
 public class SensorForm extends FormLayout {
 
+
+    TextField sensorId = new TextField("id");
     TextField name = new TextField("Name");
     ComboBox<SensorStatus> status = new ComboBox<>("Status");
     private Binder<Sensor> binder = new Binder<>(Sensor.class);
@@ -45,12 +48,13 @@ public class SensorForm extends FormLayout {
         saveButton.addClickListener(this::save);
         deleteButton.addClickListener(this::delete);
 
+        sensorId.setReadOnly(true);
 
         HorizontalLayout buttons = new HorizontalLayout(saveButton, deleteButton);
 
         saveButton.getElement().setAttribute("theme","primary");
 
-        add(name,status,buttons);
+        add(sensorId,name,status,buttons);
 
         binder.bindInstanceFields(this);
 
@@ -75,8 +79,7 @@ public class SensorForm extends FormLayout {
     }
 
     private void save(ClickEvent<Button> buttonClickEvent) {
-        sensor.setSensorId("B"+new Random().nextInt(1000));
-        sensor.setTimeStamp(Instant.now().toEpochMilli());
+        
         service.save(sensor);
         broadCaster.broadcast(StringHelper.UPDATELIST);
         setSensor(null);

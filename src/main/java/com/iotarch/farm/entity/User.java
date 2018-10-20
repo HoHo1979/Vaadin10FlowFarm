@@ -3,9 +3,11 @@ package com.iotarch.farm.entity;
 import com.vaadin.flow.spring.annotation.VaadinSessionScope;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 @Component
 @VaadinSessionScope
-public class User {
+public class User implements Serializable , Cloneable {
 
     String userName;
     String password;

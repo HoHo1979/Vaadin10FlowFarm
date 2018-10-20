@@ -1,6 +1,7 @@
 package com.iotarch.farm;
 
 import com.vaadin.flow.shared.Registration;
+import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.ApplicationScope;
 
@@ -13,9 +14,9 @@ import java.util.function.Consumer;
 @ApplicationScope
 public class BroadCaster {
 
-    static Executor executor = Executors.newSingleThreadExecutor();
+    Executor executor = Executors.newSingleThreadExecutor();
 
-    static LinkedList<Consumer<String>> listeners = new LinkedList<>();
+    LinkedList<Consumer<String>> listeners = new LinkedList<>();
 
         public synchronized Registration register(
                 Consumer<String> listener) {

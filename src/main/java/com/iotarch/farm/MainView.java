@@ -1,7 +1,5 @@
 package com.iotarch.farm;
 
-import com.iotarch.farm.entity.Customer;
-import com.iotarch.farm.entity.CustomerService;
 import com.iotarch.farm.entity.Sensor;
 import com.iotarch.farm.entity.User;
 import com.iotarch.farm.service.SensorService;
@@ -12,10 +10,8 @@ import com.vaadin.flow.component.DetachEvent;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.Main;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.Push;
@@ -35,10 +31,9 @@ import java.time.format.FormatStyle;
 @Route("")
 public class MainView extends VerticalLayout implements BeforeEnterObserver{
 
-    private CustomerService service = CustomerService.getInstance();
+
     private Grid<Sensor> grid = new Grid<>();
     private final TextField filterText;
-//    private CustomerForm form = new CustomerForm(this);
     private Button logoutButton = new Button("Logout");
 
     SensorService sensorService;
@@ -69,6 +64,7 @@ public class MainView extends VerticalLayout implements BeforeEnterObserver{
 
         grid.setSizeFull();
 
+        grid.addColumn(Sensor::getSensorId).setHeader("Sensor id");
         grid.addColumn(Sensor::getName).setHeader("Sensor name");
         grid.addColumn(Sensor::getStatus).setHeader("Status");
         grid.addColumn(new LocalDateTimeRenderer<>(Sensor::getLocalDateTime,DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT,
@@ -133,7 +129,7 @@ public class MainView extends VerticalLayout implements BeforeEnterObserver{
 
     @Override
     protected void onAttach(AttachEvent attachEvent) {
-        super.onAttach(attachEvent);
+//        super.onAttach(attachEvent);
         UI ui = attachEvent.getUI();
         registration = broadCaster.register(message->{
 
@@ -147,8 +143,9 @@ public class MainView extends VerticalLayout implements BeforeEnterObserver{
 
     @Override
     protected void onDetach(DetachEvent detachEvent) {
-        super.onDetach(detachEvent);
+//        super.onDetach(detachEvent);
         registration.remove();
         registration=null;
+//        getUI().get().navigate(StringHelper.LOGIN);
     }
 }

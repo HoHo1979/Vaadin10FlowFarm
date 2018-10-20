@@ -9,7 +9,7 @@ import java.time.ZoneOffset;
 
 public class Sensor implements Serializable, Cloneable {
 
-    String sensorId;
+    String sensorId=null;
 
     String name;
 

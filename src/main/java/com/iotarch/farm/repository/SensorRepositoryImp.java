@@ -2,6 +2,7 @@ package com.iotarch.farm.repository;
 
 import com.iotarch.farm.entity.Sensor;
 import com.iotarch.farm.entity.SensorStatus;
+import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.context.annotation.ApplicationScope;
@@ -11,18 +12,16 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.temporal.TemporalField;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 //@Repository
 @Component
 @ApplicationScope
 public class SensorRepositoryImp implements SesnsorRepository {
 
-    List<Sensor> sensors = new ArrayList<>();
-
+//    List<Sensor> sensors = Collections.synchronizedList(new ArrayList<>());
+    List<Sensor> sensors = new CopyOnWriteArrayList<Sensor>();
 
     public SensorRepositoryImp() {
 
@@ -33,7 +32,7 @@ public class SensorRepositoryImp implements SesnsorRepository {
             id=(i+1)+"";
 
             Instant instant = Instant.now();
-            Sensor sensor = new Sensor(id,"A"+id, SensorStatus.On,instant.toEpochMilli());
+            Sensor sensor = new Sensor("A"+id,"A"+id, SensorStatus.On,instant.toEpochMilli());
 //            sensor.setLocalDateTime(LocalDateTime.ofInstant(instant,ZoneOffset.UTC));
             sensors.add(sensor);
         }
@@ -58,7 +57,7 @@ public class SensorRepositoryImp implements SesnsorRepository {
         boolean matchedSensor=false;
 
         for (Sensor sensor1 : sensors) {
-            if(sensor.getSensorId().equals(sensor1)){
+            if(sensor1.getSensorId().equals(sensor.getSensorId())){
                 sensor1.setName(sensor.getName());
                 sensor1.setStatus(sensor.getStatus());
                 sensor1.setUpdateTimeStamp(Instant.now().toEpochMilli());
@@ -68,7 +67,7 @@ public class SensorRepositoryImp implements SesnsorRepository {
             }
         }
 
-        if(!matchedSensor){
+        if(matchedSensor==false){
             sensors.add(sensor);
         }
 

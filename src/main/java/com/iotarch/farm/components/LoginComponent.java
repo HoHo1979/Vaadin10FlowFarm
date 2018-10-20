@@ -31,9 +31,12 @@ public class LoginComponent extends HorizontalLayout {
 
     public LoginComponent(){
 
+        
         loginButton.addClickListener(this::clicked);
 
         add(userName,password,loginButton);
+
+        setMargin(true);
 
     }
 
