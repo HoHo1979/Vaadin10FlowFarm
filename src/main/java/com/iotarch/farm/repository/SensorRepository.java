@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 //@Repository
-public interface SesnsorRepository /*extends JpaRepository*/{
+public interface SensorRepository /*extends JpaRepository*/{
 
     List<Sensor> findAll();
 

@@ -13,9 +13,19 @@ public class User implements Serializable , Cloneable {
     String password;
     boolean login = false;
 
+    String role;
+
     public User() {
     }
 
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public String getUserName() {
         return userName;

@@ -14,6 +14,7 @@ import com.vaadin.flow.router.BeforeLeaveEvent;
 import com.vaadin.flow.router.BeforeLeaveObserver;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import sun.rmi.runtime.Log;
 
 
@@ -22,7 +23,6 @@ public class LoginComponent extends HorizontalLayout {
 
     private TextField userName = new TextField("UserName");
     private TextField password = new TextField("Password");
-
     private Button loginButton = new Button("Login");
 
     @Autowired
@@ -51,6 +51,8 @@ public class LoginComponent extends HorizontalLayout {
     public void checkIfhasAccessPermission(){
 
         if(userName.getValue().equals("abc") && password.getValue().equals("123")){
+
+
 
             user.setUserName("abc");
             user.setLogin(true);

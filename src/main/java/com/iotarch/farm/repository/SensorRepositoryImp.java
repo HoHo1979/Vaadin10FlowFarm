@@ -2,23 +2,17 @@ package com.iotarch.farm.repository;
 
 import com.iotarch.farm.entity.Sensor;
 import com.iotarch.farm.entity.SensorStatus;
-import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.context.annotation.ApplicationScope;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.time.temporal.TemporalField;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 //@Repository
 @Component
 @ApplicationScope
-public class SensorRepositoryImp implements SesnsorRepository {
+public class SensorRepositoryImp implements SensorRepository {
 
     List<Sensor> sensors = new CopyOnWriteArrayList<Sensor>();
 
@@ -71,4 +65,5 @@ public class SensorRepositoryImp implements SesnsorRepository {
 
         return sensor;
     }
+
 }
